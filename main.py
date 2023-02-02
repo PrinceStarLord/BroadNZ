@@ -41,7 +41,7 @@ async def startprivate(client, message):
         if LOG_CHANNEL:
             await client.send_message(
                 LOG_CHANNEL,
-                f"#NEWUSER: \n\nNew User [{message.from_user.first_name}](tg://user?id={message.from_user.id}) started @{BOT_USERNAME} !!",
+                f"** #NEWUSER: \n\n[{message.from_user.first_name}](tg://user?id={message.from_user.id}) Started @{BOT_USERNAME} !!",
             )
         else:
             logging.info(f"#NewUser :- Name : {message.from_user.first_name} ID : {message.from_user.id}")
@@ -64,9 +64,8 @@ async def sts(c, m):
         await m.delete()
         return
     await m.reply_text(
-        text=f"**Total Users in Database 📂:** `{await db.total_users_count()}`\n\n**Total Users with Notification Enabled 🔔 :** `{await db.total_notif_users_count()}`",
+        text=f"** » TOTAL USERS :** `{await db.total_users_count()}`\n\n**» Total Users, Notification Enabled :** `{await db.total_notif_users_count()}`",
         quote=True
     )
 
-log.info("Bot Started - %s", bot_username)
 Bot.run()
