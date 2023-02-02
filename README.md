@@ -11,21 +11,11 @@
 	- This for some getting user info. If any new User added to DB, Bot will send Log to that Logs Channel. You can use same DB Channel ID.
  - `BROADCAST_AS_COPY` - Value should be `True` or `False`.
 	- If `True` broadcast messages will be forwarder *As Copy*. If `False` broadcast messages will be forwarded with Forward Tag.
- - `DB_NAME` - [mongodb.com](https://mongodb.com) Collection name to be used.
-
-## User's Commands 😉
-
-```
-start - Start the bot 🥲
-settings - Customise settings
-```
+ - `DB_NAME` - [mongodb.com](https://mongodb.com) Collection name to be used.`
 
 ## Admin Commands 🤫
 
 ```
 stats - Total User Number in Database
 broadcast - Reply to Message to Broadcast
-ban_user - Ban A User with time & reason
-unban_user - Unban a User
-banned_users - Show Banned Users
 ```
