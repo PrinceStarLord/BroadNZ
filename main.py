@@ -8,7 +8,6 @@ import logging
 from pyrogram import Client
 from pyrogram import StopPropagation, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
-from telethon import TelegramClient, events, Button, types, functions, errors
 
 import config
 from handlers.broadcast import broadcast
@@ -71,41 +70,5 @@ async def sts(c, m):
         text=f"** » TOTAL USERS :** `{await db.total_users_count()}`\n\n**» Total Users, Notification Enabled :** `{await db.total_notif_users_count()}`",
         quote=True
     )
-    
-@Bot.on(events.Raw(types.UpdateBotChatInviteRequester))
-async def approver(event):
-    chat = event.peer.channel_id
-    chat_settings = await db.get("CHAT_SETTINGS") or "{}"
-    chat_settings = eval(chat_settings)
-    welcome_msg = eval(await db.get("WELCOME_MSG") or "{}")
-    chat_welcome = (
-        welcome_msg.get(chat)
-        or "Hello {name}, your request to join {chat} has been {dn}"
-    )
-    chat_welcome += "\nSend /start to know more."  # \n\n__**Powered by @M2LINKS**__"
-    who = await bot.get_entity(event.user_id)
-    chat_ = await bot.get_entity(chat)
-    dn = "approved!"
-    appr = True
-    if chat_settings.get(str(chat)) == "Auto-Approve":
-        appr = True
-        dn = "approved!"
-    elif chat_settings.get(str(chat)) == "Auto-Disapprove":
-        appr = False
-        dn = "disapproved :("
-    with contextlib.suppress(
-        errors.rpcerrorlist.UserIsBlockedError, errors.rpcerrorlist.PeerIdInvalidError
-    ):
-        await bot.send_message(
-            event.user_id,
-            chat_welcome.format(name=who.first_name, chat=chat_.title, dn=dn),
-            buttons=Button.url("Updates", url="https://t.me/m2links"),
-        )
-    with contextlib.suppress(errors.rpcerrorlist.UserAlreadyParticipantError):
-        await bot(
-            functions.messages.HideChatJoinRequestRequest(
-                approved=appr, peer=chat, user_id=event.user_id
-            )
-        )
 
 Bot.run()
