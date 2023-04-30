@@ -50,8 +50,7 @@ async def startprivate(client, message):
             logging.info(f"#NewUser :- Name : {message.from_user.first_name} ID : {message.from_user.id}")
     welcomed = f"Hey <b>{message.from_user.first_name}</b>\nI'm a simple Telegram bot that can broadcast messages and media to the bot subscribers"
     buttons = [[
-            InlineKeyboardButton("Updates",url = 'https://t.me/M2LINKS'),
-            InlineKeyboardButton("Close", callback_data = "close")
+            InlineKeyboardButton("Updates",url = 'https://t.me/M2LINKS')
         ]]
     await message.reply_text(welcomed, reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)        
     raise StopPropagation
