@@ -35,6 +35,12 @@ async def _(bot, cmd):
 
 @Bot.on_message(filters.command("start") & filters.private)
 async def startprivate(client, message):
+    buttons = [
+        [
+            InlineKeyboardButton("Updates",url = 'https://t.me/M2LINKS'),
+            InlineKeyboardButton("Close", callback_data = "close")
+        ]
+    ]
     # return
     chat_id = message.from_user.id
     if not await db.is_user_exist(chat_id):
@@ -48,6 +54,8 @@ async def startprivate(client, message):
             )
         else:
             logging.info(f"#NewUser :- Name : {message.from_user.first_name} ID : {message.from_user.id}")
+    welcomed = f"Hey <b>{message.from_user.first_name}</b>\nI'm a simple Telegram bot that can broadcast messages and media to the bot subscribers"
+    await message.reply_text(welcomed)        
     raise StopPropagation
 
 @Bot.on_message(filters.private & filters.command("broadcast"))
