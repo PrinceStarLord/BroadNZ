@@ -2,7 +2,7 @@
  - `BOT_TOKEN` - Get from [@BotFather](https://t.me/BotFather)
  - `API_ID` - Get it from [telegram.org](https://my.telegram.org/auth)
  - `API_HASH` - Get it from [telegram.org](https://my.telegram.org/auth)
- - `AUTH_USERS` - Authorised user's ID to use [Admin Commands](https://github.com/nacbots/broadcastbot#admin-commands) {Split 💔 with a space}.
+ - `AUTH_USERS` - Authorised user's ID to use Admin Commands
  - `DB_URL` - MongoDB Database URI get it from [mongodb.com](https://mongodb.com)
 	- This for Saving UserIDs. When you will Broadcast, bot will forward the Broadcast to DB Users.
 
